@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 5.188rem;
-  background-color: #FFF;
+  background-color: ${({theme}) => theme.colors.white};
 `
 
 export const HomeLink = styled(Link)`
@@ -14,7 +14,7 @@ export const HomeLink = styled(Link)`
   align-items: center;
   padding: 0.75rem;
   border-radius: 50px;
-  background-color: rgba(228, 15, 15, 1);
+  background-color: ${({theme}) => theme.colors.red_500};
   text-decoration: none;
   transition: all .3s ease;
   overflow: hidden;
@@ -40,7 +40,7 @@ export const Navigation = styled.nav`
 `
 
 export const OutlineLink = styled(Link)`
-  color: rgba(0, 0, 0, 1);
+  color: ${({theme}) => theme.colors.gray_500};
   text-decoration: none;
   text-transform: capitalize;
 `
@@ -48,9 +48,9 @@ export const OutlineLink = styled(Link)`
 export const ScheduleLink = styled(Link)`
   padding: 0.75rem;
   border-radius: 50px;
-  background-color: rgba(228, 15, 15, 1);
+  background-color: ${({ theme }) => theme.colors.red_500};
   text-decoration: none;
-  color: #fff;
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   font-weight: 700;    
 `
