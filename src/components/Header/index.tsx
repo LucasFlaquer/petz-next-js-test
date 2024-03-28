@@ -7,7 +7,7 @@ export function Header() {
   return (
     <S.Container>
       <S.HomeLink href={'#'}>
-        <Image src={PokeballIcon} alt='pokeball' width={37} height={37} />
+        <Image src={PokeballIcon} alt="pokeball" width={37} height={37} />
         <span>Centro Pokémon</span>
       </S.HomeLink>
       <S.Navigation>

@@ -10,8 +10,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <div className={inter.className}>
-        <Component {...pageProps}  />
-        <GlobalStyles />   
+        <Component {...pageProps} />
+        <GlobalStyles />
       </div>
     </ThemeProvider>
   )
