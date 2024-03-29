@@ -8,11 +8,11 @@ export default function Home() {
   const [isActive, setIsActive] = useState(true)
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsActive(false);
-    }, 5000);
-    return () => clearTimeout(timer);
+      setIsActive(false)
+    }, 5000)
+    return () => clearTimeout(timer)
   }, [])
-  
+
   return (
     <HomeContainer>
       <Header homeActive={isActive} />
