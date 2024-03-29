@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 
-export const HomeLink = styled(Link)`
+export const HomeLink = styled(Link)<{homeActive: boolean}>`
   display: flex;
   align-items: center;
   padding: 0.75rem;
@@ -31,6 +31,11 @@ export const HomeLink = styled(Link)`
   &:hover {
     width: 259px;
   }
+
+  ${(props) => props.homeActive && css`
+    width: 259px;
+  `}
+
 `
 
 export const Navigation = styled.nav`
