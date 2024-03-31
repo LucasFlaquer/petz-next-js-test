@@ -5,17 +5,19 @@ export const theme = {
     gray_500: 'rgba(0, 0, 0, 1)',
     gray_300: 'rgba(29, 29, 29, 1)',
     gray_100: 'rgba(0, 0, 0, 0.4)',
+    gray_50: 'rgba(116, 116, 116, 1)',
     text: {
       black: '#17171b',
       grey: '#747476',
-      number: '#17171B99'
-    }
+      number: '#17171B99',
+    },
   },
   fontSize: {
+    xsm: 12,
     sm: 14,
     md: 16,
     lg: 26,
     xl: 32,
-    xxl: 100
-  }
+    xxl: 100,
+  },
 } as const
