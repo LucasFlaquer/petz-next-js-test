@@ -9,7 +9,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 
-export const HomeLink = styled(Link)<{homeActive: boolean}>`
+export const HomeLink = styled(Link)<{ 'data-expanded': boolean }>`
   display: flex;
   align-items: center;
   padding: 0.75rem;
@@ -32,10 +32,11 @@ export const HomeLink = styled(Link)<{homeActive: boolean}>`
     width: 259px;
   }
 
-  ${(props) => props.homeActive && css`
-    width: 259px;
-  `}
-
+  ${(props) =>
+    props['data-expanded'] &&
+    css`
+      width: 259px;
+    `}
 `
 
 export const Navigation = styled.nav`

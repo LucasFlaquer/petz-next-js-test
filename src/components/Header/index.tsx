@@ -6,10 +6,10 @@ interface Props {
   homeActive?: boolean
 }
 
-export function Header({ homeActive=false }: Props) {
+export function Header({ homeActive = false }: Props) {
   return (
     <S.Container>
-      <S.HomeLink href={'#'} homeActive={homeActive}>
+      <S.HomeLink href={'#'} data-expanded={homeActive}>
         <Image src={PokeballIcon} alt="pokeball" width={37} height={37} />
         <span>Centro Pokémon</span>
       </S.HomeLink>
