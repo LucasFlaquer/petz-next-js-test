@@ -211,7 +211,6 @@ export function ScheduleForm() {
             <S.SubmitButton type="submit">Confirmar Agendamento</S.SubmitButton>
           </S.SubmitContainer>
         </form>
-        <pre>{JSON.stringify(errors.region?.message)}</pre>
       </FormProvider>
     </S.Container>
   )
