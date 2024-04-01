@@ -1,5 +1,5 @@
 import { SelectField } from '../SelectField'
-import { FormValues } from '../../ScheduleForm'
+import { FormValues } from '../../ScheduleForm/validationSchema'
 import { useFormContext } from 'react-hook-form'
 import { Props as ReactSelectProps } from 'react-select'
 
