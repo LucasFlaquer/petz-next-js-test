@@ -63,3 +63,38 @@ export const TeamListButton = styled.button`
     }
   }
 `
+export const Resume = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+
+  span {
+    font-size: ${({ theme }) => theme.fontSize.sm}px;
+    color: ${({ theme }) => theme.colors.gray_50};
+
+    small: {
+      font-size: 0.5rem;
+    }
+  }
+`
+
+export const SubmitButton = styled.button`
+  padding: 12px;
+  outline: none;
+  border-radius: 30px;
+  border: 0;
+  background-color: ${({ theme }) => theme.colors.red_500};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
+`
+export const SubmitContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+
+  h3 {
+    font-weight: 600;
+    font-size: ${({ theme }) => theme.fontSize.lg}px;
+  }
+`
