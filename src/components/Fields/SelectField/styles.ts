@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components'
 import { Label } from '../Label'
 
 interface StyleProps {
-  variant: 'inline' | 'default'
+  $variant: 'inline' | 'default'
 }
 
 export const Container = styled.div<StyleProps>`
   flex: 1;
   margin-bottom: 1rem;
-  ${({ variant }) =>
-    variant === 'inline' &&
+  ${({ $variant }) =>
+    $variant === 'inline' &&
     css`
       display: flex;
       align-items: center;
@@ -18,10 +18,12 @@ export const Container = styled.div<StyleProps>`
       .custom-react-select {
         flex: 1;
       }
-
+      ${Label} {
+        margin-bottom: 0;
+      }
       /* flex-direction */
     `}
-
+  ${Label}
   .custom-react-select {
     > div[class*='control'] {
       border-radius: 8px;
@@ -34,12 +36,4 @@ export const Container = styled.div<StyleProps>`
   span[class*='indicatorSeparator'] {
     display: none;
   }
-`
-
-export const SelectLabel = styled(Label)<StyleProps>`
-  ${({ variant }) =>
-    variant === 'inline' &&
-    css`
-      margin-bottom: 0;
-    `}
 `

@@ -1,6 +1,7 @@
 import { Props as ReactSelectProps } from 'react-select'
 import * as S from './styles'
 import dynamic from 'next/dynamic'
+import { Label } from '../Label'
 
 type Option = { label: string; value: string }
 
@@ -22,8 +23,8 @@ export function SelectField({
     handleChange(values.value)
   }
   return (
-    <S.Container variant={variant}>
-      <S.SelectLabel variant={variant}>{label}</S.SelectLabel>
+    <S.Container $variant={variant}>
+      <Label>{label}</Label>
       <Select
         className="custom-react-select"
         {...rest}
