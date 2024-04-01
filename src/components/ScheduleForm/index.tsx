@@ -19,7 +19,11 @@ import { currencyBRFromat } from '../../utils/formatCurrency'
 import { FormValues, defaultValues, schema } from './validationSchema'
 import { getHighestGent } from '../../utils/highestGen'
 
-export function ScheduleForm() {
+interface Props {
+  onSubmit: (values: FormValues) => void
+}
+
+export function ScheduleForm({ onSubmit }: Props) {
   const { fetchPokemons, getPokemonDetail, pokemons } = usePokemons()
   const methods = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -57,8 +61,8 @@ export function ScheduleForm() {
     })
   }
 
-  function onSubmit(values: FormValues) {
-    console.log(values)
+  function onFormSubmit(values: FormValues) {
+    onSubmit(values)
   }
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export function ScheduleForm() {
     <S.Container>
       <h2>Preencha o formulário abaixo para agendar sua consulta</h2>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
           <S.FieldGroup>
             <TextInput
               label="Nome"
@@ -89,8 +93,8 @@ export function ScheduleForm() {
             <TextInput
               label="Sobrenome"
               placeholder="Digite seu sobrenome"
-              {...register('lastname')}
-              error={errors?.lastname?.message}
+              {...register('lastName')}
+              error={errors?.lastName?.message}
             />
           </S.FieldGroup>
           <S.FieldGroup>
