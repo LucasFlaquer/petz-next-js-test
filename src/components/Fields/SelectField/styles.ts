@@ -17,14 +17,16 @@ export const Container = styled.div<StyleProps>`
 
       .custom-react-select {
         flex: 1;
+        margin-top: 0;
       }
       ${Label} {
         margin-bottom: 0;
       }
-      /* flex-direction */
     `}
-  ${Label}
+
   .custom-react-select {
+    margin-top: 0.5rem;
+
     > div[class*='control'] {
       border-radius: 8px;
       height: 45px;
