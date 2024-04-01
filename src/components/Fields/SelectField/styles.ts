@@ -32,8 +32,7 @@ export const Container = styled.div<StyleProps>`
         margin-bottom: 0;
       }
       > span {
-        right: 0;
-        left: unset;
+        left: 20%;
       }
     `}
 
