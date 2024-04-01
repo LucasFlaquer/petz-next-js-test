@@ -3,7 +3,6 @@ import { TextInput } from '../Fields/TextInput'
 import * as S from './styles'
 import { SelectField } from '../Fields/SelectField'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 import {
   Controller,
   FormProvider,
@@ -17,31 +16,15 @@ import { useScheduling } from '../../hooks/useScheduling'
 import { SelectPokemonField } from '../Fields/SelectPokemonField'
 import { usePokemons } from '../../hooks/usePokemons'
 import { currencyBRFromat } from '../../utils/formatCurrency'
-
-const schema = z.object({
-  firstName: z.string(),
-  lastname: z.string(),
-  region: z.string(),
-  city: z.string(),
-  pokemons: z
-    .array(
-      z.object({
-        name: z.string(),
-        generation: z.number(),
-      }),
-    )
-    .min(1, 'Selecione pelo menos um pokémon')
-    .max(6, 'Não é possível ter mais de 6 pokémons no time'),
-  date: z.string(),
-  time: z.string(),
-})
-
-export type FormValues = z.infer<typeof schema>
+import { FormValues, schema } from './validationSchema'
 
 export function ScheduleForm() {
   const { fetchPokemons, getPokemonDetail, pokemons } = usePokemons()
   const methods = useForm<FormValues>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      pokemons: [{ generation: 0, name: '' }],
+    },
   })
   const { register, handleSubmit, control, watch } = methods
   const regionValue = watch('region')
@@ -56,6 +39,7 @@ export function ScheduleForm() {
   })
 
   function addPokemon() {
+    console.log('adding')
     append({
       generation: 0,
       name: '',
@@ -111,6 +95,7 @@ export function ScheduleForm() {
                   options={cities}
                   instanceId={'city'}
                   handleChange={field.onChange}
+                  placeholder="Selecione sua cidade"
                 />
               )}
             />
@@ -132,6 +117,7 @@ export function ScheduleForm() {
                         options={pokemons}
                         onMenuScrollToBottom={fetchPokemons}
                         fetchGeneration={getPokemonDetail}
+                        placeholder="Selecione seu pokémon"
                       />
                     )}
                   />
@@ -154,6 +140,7 @@ export function ScheduleForm() {
                   label="Data para Atendimento"
                   options={dates}
                   handleChange={field.onChange}
+                  placeholder="Selecione uma data"
                 />
               )}
             />
@@ -165,6 +152,7 @@ export function ScheduleForm() {
                   label="Horário de Atendimento"
                   options={times}
                   handleChange={field.onChange}
+                  placeholder="Selecione um horário"
                 />
               )}
             />
