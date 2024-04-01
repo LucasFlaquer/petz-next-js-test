@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react'
 import { api } from '../infra/http/requestHandler'
+import { romanToInt } from '../utils/roman'
 
 interface PokemonsApiResponse {
   results: { name: string; url: string }[]
   next: string
 }
+interface PokemonSpecieResponse {
+  generation: {
+    name: string
+  }
+}
 
-interface PokemonOption {
+export interface PokemonOption {
   label: string
   value: string
 }
@@ -24,6 +30,17 @@ export function usePokemons() {
     setPokemons((state) => [...state, ...pokemonList])
     return pokemonList
   }
+
+  async function getPokemonDetail(pokemon: string) {
+    const response = await api.get<PokemonSpecieResponse>(
+      `/pokemon-species/${pokemon}`,
+    )
+    const genValue = response.data.generation.name.split('generation-')[1]
+    return {
+      generation: romanToInt(genValue.toLocaleUpperCase()),
+    }
+  }
+
   useEffect(() => {
     fetchPokemons()
   }, [])
@@ -31,5 +48,6 @@ export function usePokemons() {
   return {
     pokemons,
     fetchPokemons,
+    getPokemonDetail,
   }
 }
