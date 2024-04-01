@@ -16,7 +16,10 @@ export function SelectPokemonField({
   fetchGeneration,
   ...rest
 }: Props) {
-  const { setValue } = useFormContext<FormValues>()
+  const {
+    setValue,
+    formState: { errors },
+  } = useFormContext<FormValues>()
 
   async function onChange(value: string) {
     const { generation } = await fetchGeneration(value)
@@ -29,6 +32,7 @@ export function SelectPokemonField({
       label={label}
       variant="inline"
       handleChange={onChange}
+      error={errors.pokemons?.[index]?.name?.message}
       {...rest}
     />
   )

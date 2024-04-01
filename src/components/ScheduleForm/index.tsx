@@ -16,20 +16,25 @@ import { useScheduling } from '../../hooks/useScheduling'
 import { SelectPokemonField } from '../Fields/SelectPokemonField'
 import { usePokemons } from '../../hooks/usePokemons'
 import { currencyBRFromat } from '../../utils/formatCurrency'
-import { FormValues, schema } from './validationSchema'
+import { FormValues, defaultValues, schema } from './validationSchema'
+import { getHighestGent } from '../../utils/highestGen'
 
 export function ScheduleForm() {
   const { fetchPokemons, getPokemonDetail, pokemons } = usePokemons()
   const methods = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      pokemons: [{ generation: 0, name: '' }],
-    },
+    defaultValues,
   })
-  const { register, handleSubmit, control, watch } = methods
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = methods
   const regionValue = watch('region')
+  const pokemonArrayFields = watch('pokemons')
   const dateValue = watch('date')
-  const pokemonsList = watch('pokemons')
   const { regions } = useRegions()
   const { cities } = useRegionCities({ region: regionValue })
   const { dates, times, fetchTimesByDate } = useScheduling()
@@ -38,8 +43,14 @@ export function ScheduleForm() {
     name: 'pokemons',
   })
 
+  const pokemonsList = fields.map((field, index) => {
+    return {
+      ...field,
+      ...pokemonArrayFields[index],
+    }
+  })
+
   function addPokemon() {
-    console.log('adding')
     append({
       generation: 0,
       name: '',
@@ -55,6 +66,14 @@ export function ScheduleForm() {
     fetchTimesByDate(dateValue)
   }, [dateValue])
 
+  const attendePokemonsAmount = fields.length
+  const unitPokemonValue = 70
+  const subtotal = attendePokemonsAmount * unitPokemonValue
+  const taxPercentage = getHighestGent(pokemonsList) * 3
+  const calculatedPercentage = taxPercentage > 30 ? 30 : taxPercentage
+  const manegementTax = (subtotal * calculatedPercentage) / 100
+  const totalValue = subtotal + manegementTax
+
   return (
     <S.Container>
       <h2>Preencha o formulário abaixo para agendar sua consulta</h2>
@@ -65,11 +84,13 @@ export function ScheduleForm() {
               label="Nome"
               placeholder="Digite seu nome"
               {...register('firstName')}
+              error={errors?.firstName?.message}
             />
             <TextInput
               label="Sobrenome"
               placeholder="Digite seu sobrenome"
               {...register('lastname')}
+              error={errors?.lastname?.message}
             />
           </S.FieldGroup>
           <S.FieldGroup>
@@ -83,6 +104,7 @@ export function ScheduleForm() {
                   instanceId={'region'}
                   placeholder="Selecione uma região"
                   handleChange={field.onChange}
+                  error={errors.region?.message}
                 />
               )}
             />
@@ -96,6 +118,7 @@ export function ScheduleForm() {
                   instanceId={'city'}
                   handleChange={field.onChange}
                   placeholder="Selecione sua cidade"
+                  error={errors.city?.message}
                 />
               )}
             />
@@ -141,6 +164,7 @@ export function ScheduleForm() {
                   options={dates}
                   handleChange={field.onChange}
                   placeholder="Selecione uma data"
+                  error={errors.date?.message}
                 />
               )}
             />
@@ -153,6 +177,7 @@ export function ScheduleForm() {
                   options={times}
                   handleChange={field.onChange}
                   placeholder="Selecione um horário"
+                  error={errors.time?.message}
                 />
               )}
             />
@@ -160,15 +185,15 @@ export function ScheduleForm() {
           <S.ResumeContainer>
             <S.Resume>
               <span>Número de pokemons a serem atendidos</span>
-              <span>0{pokemonsList?.length || 0}</span>
+              <span>0{attendePokemonsAmount}</span>
             </S.Resume>
             <S.Resume>
               <span>Atendimento unitário por pokémon:</span>
-              <span>{currencyBRFromat(70)}</span>
+              <span>{currencyBRFromat(unitPokemonValue)}</span>
             </S.Resume>
             <S.Resume>
               <span>Subtotal:</span>
-              <span>{currencyBRFromat(70)}</span>
+              <span>{currencyBRFromat(subtotal)}</span>
             </S.Resume>
             <S.Resume>
               <span>
@@ -178,14 +203,15 @@ export function ScheduleForm() {
                   geração mais alta do time, com limite de até 30%
                 </small>
               </span>
-              <span>{currencyBRFromat(70)}</span>
+              <span>{currencyBRFromat(manegementTax)}</span>
             </S.Resume>
           </S.ResumeContainer>
           <S.SubmitContainer>
-            <h3>Valor Total: R$ 72,12</h3>
+            <h3>Valor Total: {currencyBRFromat(totalValue)}</h3>
             <S.SubmitButton type="submit">Confirmar Agendamento</S.SubmitButton>
           </S.SubmitContainer>
         </form>
+        <pre>{JSON.stringify(errors.region?.message)}</pre>
       </FormProvider>
     </S.Container>
   )

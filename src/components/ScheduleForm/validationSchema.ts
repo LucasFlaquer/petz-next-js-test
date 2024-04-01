@@ -1,21 +1,31 @@
 import { z } from 'zod'
 
 export const schema = z.object({
-  firstName: z.string(),
-  lastname: z.string(),
-  region: z.string(),
-  city: z.string(),
+  firstName: z.string().min(1, 'Campo Obrigatório'),
+  lastname: z.string().min(1, 'Campo Obrigatório'),
+  region: z.string().min(1, 'Campo Obrigatório'),
+  city: z.string().min(1, 'Campo Obrigatório'),
   pokemons: z
     .array(
       z.object({
-        name: z.string(),
+        name: z.string().min(1, 'Campo Obrigatório'),
         generation: z.number(),
       }),
     )
     .min(1, 'Selecione pelo menos um pokémon')
     .max(6, 'Não é possível ter mais de 6 pokémons no time'),
-  date: z.string(),
-  time: z.string(),
+  date: z.string().min(1, 'Campo Obrigatório'),
+  time: z.string().min(1, 'Campo Obrigatório'),
 })
 
 export type FormValues = z.infer<typeof schema>
+
+export const defaultValues: FormValues = {
+  firstName: '',
+  lastname: '',
+  region: '',
+  city: '',
+  pokemons: [{ name: '', generation: 0 }],
+  date: '',
+  time: '',
+}

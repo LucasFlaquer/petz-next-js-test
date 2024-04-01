@@ -11,12 +11,14 @@ interface Props extends ReactSelectProps {
   label: string
   variant?: 'default' | 'inline'
   handleChange: (value: string) => void
+  error?: string | undefined
 }
 
 export function SelectField({
   label,
   variant = 'default',
   handleChange,
+  error,
   ...rest
 }: Props) {
   function onChange(values: { label: string; value: string }) {
@@ -30,6 +32,7 @@ export function SelectField({
         {...rest}
         onChange={(option) => onChange(option as Option)}
       />
+      {error && <span>{error}</span>}
     </S.Container>
   )
 }

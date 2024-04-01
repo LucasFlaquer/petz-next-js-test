@@ -8,6 +8,7 @@ interface StyleProps {
 export const Container = styled.div<StyleProps>`
   flex: 1;
   margin-bottom: 1rem;
+  position: relative;
   ${({ $variant }) =>
     $variant === 'inline' &&
     css`
@@ -37,5 +38,13 @@ export const Container = styled.div<StyleProps>`
   }
   span[class*='indicatorSeparator'] {
     display: none;
+  }
+
+  > span {
+    font-size: ${({ theme }) => theme.fontSize.xsm}px;
+    color: ${({ theme }) => theme.colors.red_500};
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
   }
 `

@@ -5,6 +5,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 1.5rem;
+  position: relative;
+
+  span {
+    font-size: ${({ theme }) => theme.fontSize.xsm}px;
+    color: ${({ theme }) => theme.colors.red_500};
+    position: absolute;
+    bottom: 0.2rem;
+    left: 0;
+  }
 `
 export const Input = styled.input`
   width: 100%;
