@@ -22,7 +22,7 @@ export const TeamSection = styled.div`
   > span {
     display: block;
     margin-top: 1rem;
-    font-size: ${({ theme }) => theme.fontSize.xsm};
+    font-size: ${({ theme }) => theme.fontSize.xsm}px;
     font-weight: 500;
     color: ${({ theme }) => theme.colors.gray_50};
   }
@@ -43,6 +43,7 @@ export const TeamListButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.gray_500};
   outline: none;
   cursor: pointer;
+  margin-bottom: 2rem;
 
   transition:
     color,
