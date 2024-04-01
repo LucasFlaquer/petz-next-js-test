@@ -157,7 +157,7 @@ export function ScheduleForm() {
               )}
             />
           </S.FieldGroup>
-          <div>
+          <S.ResumeContainer>
             <S.Resume>
               <span>Número de pokemons a serem atendidos</span>
               <span>0{pokemonsList?.length || 0}</span>
@@ -180,7 +180,7 @@ export function ScheduleForm() {
               </span>
               <span>{currencyBRFromat(70)}</span>
             </S.Resume>
-          </div>
+          </S.ResumeContainer>
           <S.SubmitContainer>
             <h3>Valor Total: R$ 72,12</h3>
             <S.SubmitButton type="submit">Confirmar Agendamento</S.SubmitButton>

@@ -7,6 +7,11 @@ export const Container = styled.div`
   h2 {
     margin-bottom: 2rem;
   }
+
+  form {
+    max-width: 548px;
+    margin: 0 auto;
+  }
 `
 
 export const FieldGroup = styled.div`
@@ -63,6 +68,12 @@ export const TeamListButton = styled.button`
     }
   }
 `
+export const ResumeContainer = styled.div`
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray_20};
+`
+
 export const Resume = styled.div`
   display: flex;
   justify-content: space-between;
@@ -72,7 +83,7 @@ export const Resume = styled.div`
     font-size: ${({ theme }) => theme.fontSize.sm}px;
     color: ${({ theme }) => theme.colors.gray_50};
 
-    small: {
+    small {
       font-size: 0.5rem;
     }
   }
@@ -87,11 +98,11 @@ export const SubmitButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-weight: 700;
   font-size: ${({ theme }) => theme.fontSize.sm}px;
+  cursor: pointer;
 `
 export const SubmitContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
 
   h3 {
     font-weight: 600;
