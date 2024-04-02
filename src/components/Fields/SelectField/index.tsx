@@ -26,7 +26,7 @@ export function SelectField({
   }
   return (
     <S.Container $variant={variant}>
-      <Label>{label}</Label>
+      <Label htmlFor={rest.name}>{label}</Label>
       <Select
         className="custom-react-select"
         {...rest}

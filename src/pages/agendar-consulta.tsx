@@ -43,6 +43,10 @@ export default function ScheduleConsult() {
       <DetailBanner
         title="Agendar Consulta"
         description="Recupere seus pokémons em 5 segundos"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Agendar Consulta', url: '#' },
+        ]}
       />
       <Content>
         {!schedule && <ScheduleForm onSubmit={onSubmit} />}

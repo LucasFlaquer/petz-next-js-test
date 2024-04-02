@@ -10,6 +10,10 @@ export default function AboutUs() {
       <DetailBanner
         title="Quem Somos"
         description="A maior rede de tratamento pokémon."
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Quem Somos', url: '#' },
+        ]}
       />
       <Content>
         <h2>O Centro Pokémon</h2>

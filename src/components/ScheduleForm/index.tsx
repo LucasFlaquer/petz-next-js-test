@@ -88,6 +88,7 @@ export function ScheduleForm({ onSubmit }: Props) {
               label="Nome"
               placeholder="Digite seu nome"
               {...register('firstName')}
+              id="firstName"
               error={errors?.firstName?.message}
             />
             <TextInput
@@ -95,6 +96,7 @@ export function ScheduleForm({ onSubmit }: Props) {
               placeholder="Digite seu sobrenome"
               {...register('lastName')}
               error={errors?.lastName?.message}
+              id="lastName"
             />
           </S.FieldGroup>
           <S.FieldGroup>
@@ -105,7 +107,10 @@ export function ScheduleForm({ onSubmit }: Props) {
                 <SelectField
                   label="Região"
                   options={regions}
-                  instanceId={'region'}
+                  instanceId={field.name}
+                  id={field.name}
+                  name={field.name}
+                  inputId={field.name}
                   placeholder="Selecione uma região"
                   handleChange={field.onChange}
                   error={errors.region?.message}
@@ -120,6 +125,7 @@ export function ScheduleForm({ onSubmit }: Props) {
                   label="Cidade"
                   options={cities}
                   instanceId={'city'}
+                  name={field.name}
                   handleChange={field.onChange}
                   placeholder="Selecione sua cidade"
                   error={errors.city?.message}
