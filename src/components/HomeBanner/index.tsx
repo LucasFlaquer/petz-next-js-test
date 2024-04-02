@@ -1,6 +1,5 @@
 import * as S from './styles'
 
-
 export function HomeBanner() {
   return (
     <S.Container>
