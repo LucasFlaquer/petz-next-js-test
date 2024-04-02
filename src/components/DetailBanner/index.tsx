@@ -5,18 +5,18 @@ import * as S from './styles'
 interface Props {
   title: string
   description: string
+  breadcrumbs: { url: string; name: string }[]
 }
 
-export function DetailBanner({ title, description }: Props) {
+export function DetailBanner({ title, description, breadcrumbs }: Props) {
   return (
     <S.Container>
       <ul>
-        <li>
-          <Link href="#">Home</Link>
-        </li>
-        <li>
-          <Link href="#">Quem Somos</Link>
-        </li>
+        {breadcrumbs.map((breadcrumb) => (
+          <li key={breadcrumb.url}>
+            <Link href={breadcrumb.url}>{breadcrumb.name}</Link>
+          </li>
+        ))}
       </ul>
       <h2>{title}</h2>
       <p>{description}</p>
