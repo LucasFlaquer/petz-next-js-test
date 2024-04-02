@@ -9,7 +9,7 @@ interface Props {
 export function Header({ homeActive = false }: Props) {
   return (
     <S.Container>
-      <S.HomeLink href={'#'} data-expanded={homeActive}>
+      <S.HomeLink href={'#'} data-expanded={homeActive} data-testid="homeLink">
         <Image src={PokeballIcon} alt="pokeball" width={37} height={37} />
         <span>Centro Pokémon</span>
       </S.HomeLink>
