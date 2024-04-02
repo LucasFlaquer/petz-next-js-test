@@ -43,6 +43,6 @@ export default {
       },
     ],
   },
-  collectCoverageFrom: ['<rootDir>/src/modules/*/.ts', '<rootDir>/src/*/.tsx'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.tsx'],
   coveragePathIgnorePatterns: ['<rootDir>/src/_tests_/*'],
 }
